@@ -1,0 +1,4 @@
+${Ansi.DEFAULT}${AnsiStyle.BOLD}=======================================================
+${AnsiColor.BLUE} :: ${spring.application.name} (v${spring.application.version}) ::
+${AnsiColor.GREEN} :: Spring Boot (v${spring-boot.version}) ::
+${Ansi.DEFAULT}

@@ -1,0 +1,39 @@
+version: "3.9"
+
+networks:
+  demo-network:
+    name: demo-network
+
+x-stores-vars: &stores_vars
+  KEYSTORE_PASSWORD: ${KEYSTORE_PASSWORD}
+  TRUSTSTORE_PASSWORD: ${TRUSTSTORE_PASSWORD}
+
+x-ibm-cloud-vars: &ibm_cloud_vars
+  IBM_CLOUD_API_KEY: ${IBM_CLOUD_API_KEY}
+  IBM_CLOUD_SECRETS_MANAGER_SERVICE_URL: ${IBM_CLOUD_SECRETS_MANAGER_SERVICE_URL}
+  KEY_STORE_SECRET_ID: ${KEY_STORE_SECRET_ID}
+  TRUST_STORE_SECRET_ID: ${TRUST_STORE_SECRET_ID}
+
+x-web-security-vars: &web_security_vars
+  CORS_ALLOWED_ORIGINS: ${CORS_ALLOWED_ORIGINS}
+  SSL_KEY_ALIAS: ${SSL_KEY_ALIAS}
+
+x-misc-vars: &misc_vars
+  ENVIRONMENT: ${ENVIRONMENT}
+  LOGGING_ROOT_LEVEL: ${LOGGING_ROOT_LEVEL:-INFO}
+  LOGGING_PACKAGE_LEVEL: ${LOGGING_PACKAGE_LEVEL:-INFO}
+
+services:
+  spring-secrets-manager:
+    build:
+      context: .
+    environment:
+      <<: [*stores_vars, *ibm_cloud_vars, *web_security_vars, *misc_vars]
+    container_name: spring-secrets-manager
+    hostname: spring-secrets-manager
+    image: spring-secrets-manager:latest
+    networks:
+      - demo-network
+    ports:
+      - "9002:8080"
+    user: "1001:0"
