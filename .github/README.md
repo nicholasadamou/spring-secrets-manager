@@ -142,3 +142,7 @@ This class is designed for testing purposes. In a TDD (Test Driven Development) 
 To run these tests, you can right-click on the class in IntelliJ IDEA and select **Run 'SecretManagerServiceTest'**. Make sure you have a proper testing environment set up with necessary dependencies installed (like JUnit and Mockito) and that your IDE (like IntelliJ IDEA) is properly configured to run tests.
 
 Note: In these test methods, the actual interaction with IBM Cloud Secrets Manager is mocked, and the `Secret` object is not actually retrieved. In a real testing scenario, you would need valid credentials and an existing secret with the provided ID.
+
+## License
+
+The code is available under the [MIT license](LICENSE).
